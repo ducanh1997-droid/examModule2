@@ -3,18 +3,13 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class ProductManager {
-
     private final ArrayList<Product> products;
-
-
     public ProductManager() {
         products = new ArrayList<>();
     }
-
     public ArrayList<Product> getProducts() {
         return products;
     }
-
     public void create(Scanner scanner){
         String name;
         int price = 0;
@@ -42,7 +37,6 @@ public class ProductManager {
             }
         }while(!check);
         check = false;
-
         do{
             try{
                 System.out.println("Thêm số lượng sản phẩm:");
@@ -102,11 +96,10 @@ public class ProductManager {
             }
         }
     }
-
     public void deleteProduct(Scanner scanner){
         boolean check = false;
         if(products.isEmpty()){
-            System.out.println("không có sản phẩm nào trên hệ thống");
+            System.out.println("không tìm thấy sản phẩm nào trên hệ thống ");
         }else{
             System.out.println("Nhập id sản phẩm muốn xoá:");
             int id = Integer.parseInt(scanner.nextLine());
@@ -129,10 +122,9 @@ public class ProductManager {
                 }
             }
             if(!check){
-                System.out.println("không tồn tại id này");
+                System.out.println("không tìm thấy sản phẩm này");
             }
         }
-
     }
     public void sort(){
         ArrayList<Product> productsSort;
@@ -141,7 +133,6 @@ public class ProductManager {
                 for (int j = productsSort.size() - 1; j > i; j--) {
                     if (productsSort.get(j).getPrice() < productsSort.get(j - 1).getPrice()) {
                         Product temp = productsSort.get(j);
-                        //int[j] = int[j - 1]
                         productsSort.set(j, productsSort.get(j - 1));
                         productsSort.set(j - 1, temp);
                     }
@@ -149,7 +140,6 @@ public class ProductManager {
             }
             displayAll(productsSort);
     }
-
     public void findExpensiveProduct(){
 
         int maxPrice = products.get(0).getPrice();
@@ -170,7 +160,7 @@ public class ProductManager {
         }
     }
 
-    public Product read(File file){
+    public void read(File file){
         Product product = null;
         try {
             FileReader fileReader = new FileReader(file);
@@ -187,7 +177,6 @@ public class ProductManager {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return product;
     }
 
     public void write(File file){
